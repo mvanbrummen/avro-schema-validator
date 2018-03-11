@@ -63,7 +63,7 @@ class App extends Component {
          this.setState({
             showValidationMessage: true,
             isValid: data.valid,
-            validationMessage: data.valid ? "JSON validated against Avro Schema" : "Invalid: " + data.message
+            validationMessage: data.valid ? "JSON is valid against Avro Schema" : "Invalid: " + data.message
         });
     })
     .catch(e => {
@@ -80,13 +80,19 @@ class App extends Component {
    });
   }
 
+  closeResult() {
+      this.setState({
+         showValidationMessage: false
+     });
+  }
+
   render() {
     return (
       <div className="container">
       
       { this.state.showValidationMessage &&
         <div className={"notification " + (this.state.isValid ? "is-primary" : "is-danger" ) }>
-          <button className="delete"></button>
+          <button className="delete" onClick={this.closeResult.bind(this)}></button>
           { this.state.validationMessage }
         </div>
       }
