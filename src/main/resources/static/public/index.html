@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <title>Avro Schema Validator</title>
 </head>
 <body>
@@ -13,18 +15,39 @@
     You need to enable JavaScript to run this app.
 </noscript>
 
-<header>
-    <h1>Avro Schema Validator</h1>
-</header>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <h1 class="title"><span class="logo">{} </span>Avro Schema Validator</h1>
+    </a>
+  </div>
+  
+  <div class="navbar-end">
+     <div class="navbar-item">
+       <div class="field is-grouped">
+         <p class="control">
+           <a class="button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
+             <span class="icon">
+               <i class="fab fa-github"></i>
+             </span>
+             <span>View on GitHub</span>
+           </a>
+         </p>
+       </div>
+     </div>
+   </div>
+ </div>
+</nav>
 
 <section>
+  <div class="container opening">
     <p>
-        Validate JSON against an Avro schema.
+        Validate JSON against an <a href="https://avro.apache.org/docs/1.8.1/spec.html">Avro schema</a>.
     </p>
-
+  </div>
 </section>
 
-<div id="root"></div>
-<footer></footer>
+<section class="section panels" id="root"></section>
+
 </body>
 </html>

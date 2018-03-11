@@ -18,24 +18,22 @@ class App extends Component {
 
   handleChange({ target }) {
     this.setState({
-          [target.name]: target.value
-        });
+      [target.name]: target.value
+    });
   }
 
   validate() {
 
-  let req = JSON.stringify({
-    schema: this.state.schemaValue,
-    json: this.state.jsonValue
-  });
-
-  console.log(req);
-
+    let req = JSON.stringify({
+      schema: this.state.schemaValue,
+      json: this.state.jsonValue
+    });
+  
     fetch('http://localhost:8080/validate', {
-    method: 'POST',
-     mode: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
+      method: 'POST',
+      mode: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
       },
       body: req
     })
@@ -43,7 +41,7 @@ class App extends Component {
     .then(data => {
          this.setState({
             showValidationMessage: true,
-            validationMessage: data.valid ? "JSON validated against Avro Schema" ? "Invalid: " + data.message
+            validationMessage: data.valid ? "JSON validated against Avro Schema" : "Invalid: " + data.message
         });
     })
     .catch(e => {
@@ -52,37 +50,57 @@ class App extends Component {
   }
 
   clear() {
-         document.getElementById("validationForm").reset();
-              this.setState({
-                         showValidationMessage: false
-                     });
+    document.getElementById("validationForm").reset();
+    this.setState({
+       showValidationMessage: false
+   });
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <form id="validationForm">
+        <div className="columns">
+          <div className="column">
+            <div className="field">
+              <label className="label">
+                Avro Schema:
+              </label>
+              <div className="control">
+              <textarea
+                  className="textarea"
+                  name="schemaValue"
+                  rows="20"
+                  onChange={this.handleChange}>
+                </textarea>
+                </div>
+              </div>
+            </div>
+            <div className="column">
+              <div className="field">
+                <label className="label">
+                  JSON To Validate:
+                </label>
+                <div className="control">
+                <textarea
+                    className="textarea"
+                    name="jsonValue"
+                    rows="20"
+                     onChange={this.handleChange}>
+                </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          { this.state.showValidationMessage &&
+            <h3>{ this.state.validationMessage }</h3>
+          }
 
-      <form id="validationForm">
-        <textarea
-            placeholder="Enter an Avro schema..."
-            name="schemaValue"
-            onChange={this.handleChange}
-        ></textarea>
-        <textarea
-            placeholder="Enter some JSON..."
-            name="jsonValue"
-             onChange={this.handleChange}
-            >
-        </textarea>
-
-        { this.state.showValidationMessage &&
-          <h3>{ this.state.validationMessage }</h3>
-        }
-
-        <input type="button" value="Clear" onClick={this.clear.bind(this)}/>
-        <input className="validate-submit-btn" type="button" value="Validate" onClick={this.validate.bind(this)}/>
-
-</form>
+          <div className="is-pulled-right">
+            <input className="button is-white" type="button" value="Clear" onClick={this.clear.bind(this)}/>
+            <input className="button is-primary" type="button" value="Validate" onClick={this.validate.bind(this)}/>
+          </div>
+        </form>
       </div>
     );
   }
