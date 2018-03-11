@@ -5,6 +5,8 @@ import akka.actor.ActorRef
 import akka.http.scaladsl.marshalling.Marshal
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
+import mvanbrummen.avroschemavalidator.actors.{AvroSchemaRequest, AvroSchemaValidatorActor}
+import mvanbrummen.avroschemavalidator.routes.AvroSchemaValidationRoutes
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{Matchers, WordSpec}
 

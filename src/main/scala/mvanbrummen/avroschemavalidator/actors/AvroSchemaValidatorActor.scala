@@ -1,4 +1,4 @@
-package mvanbrummen.avroschemavalidator
+package mvanbrummen.avroschemavalidator.actors
 
 import akka.actor.{ Actor, ActorLogging, Props }
 import tech.allegro.schema.json2avro.converter.JsonAvroConverter

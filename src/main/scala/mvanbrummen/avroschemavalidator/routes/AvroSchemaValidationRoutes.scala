@@ -1,4 +1,4 @@
-package mvanbrummen.avroschemavalidator
+package mvanbrummen.avroschemavalidator.routes
 
 import akka.actor.{ ActorRef, ActorSystem }
 import akka.event.Logging
@@ -9,7 +9,9 @@ import akka.http.scaladsl.server.directives.MethodDirectives.post
 import akka.http.scaladsl.server.directives.PathDirectives.path
 import akka.pattern.ask
 import akka.util.Timeout
-import mvanbrummen.avroschemavalidator.AvroSchemaValidatorActor.{ ValidateSchema, ValidationResult }
+import mvanbrummen.avroschemavalidator.actors.AvroSchemaValidatorActor.{ ValidateSchema, ValidationResult }
+import mvanbrummen.avroschemavalidator.actors.AvroSchemaRequest
+import mvanbrummen.avroschemavalidator.json.JsonSupport
 
 import scala.concurrent.Future
 import scala.concurrent.duration._

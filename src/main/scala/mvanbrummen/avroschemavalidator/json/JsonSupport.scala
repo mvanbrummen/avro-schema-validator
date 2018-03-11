@@ -1,7 +1,8 @@
-package mvanbrummen.avroschemavalidator
+package mvanbrummen.avroschemavalidator.json
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import mvanbrummen.avroschemavalidator.AvroSchemaValidatorActor.ValidationResult
+import mvanbrummen.avroschemavalidator.actors.AvroSchemaRequest
+import mvanbrummen.avroschemavalidator.actors.AvroSchemaValidatorActor.ValidationResult
 import spray.json.DefaultJsonProtocol
 
 trait JsonSupport extends SprayJsonSupport {
