@@ -9,16 +9,37 @@ class App extends Component {
     this.state = {
       schemaValue: null,
       jsonValue: null,
+      schemaValueValid: { valid: true, message: "" },
+      jsonValueValid: { valid: true, message: "" },
       showValidationMessage: false,
+      isValid: false,
       validationMessage: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
   }
+  
+  validateJSON(val) {
+    try {
+      if (val.length > 0) {
+        JSON.parse(val)
+      }
+      return { 
+        valid: true,
+        message: ""
+      }
+    } catch(e) {
+      return { 
+        valid: false,
+        message: e.message
+      }
+    }  
+  }
 
   handleChange({ target }) {
     this.setState({
-      [target.name]: target.value
+      [target.name]: target.value,
+      [target.name + "Valid"]: this.validateJSON(target.value)
     });
   }
 
@@ -41,6 +62,7 @@ class App extends Component {
     .then(data => {
          this.setState({
             showValidationMessage: true,
+            isValid: data.valid,
             validationMessage: data.valid ? "JSON validated against Avro Schema" : "Invalid: " + data.message
         });
     })
@@ -52,19 +74,33 @@ class App extends Component {
   clear() {
     document.getElementById("validationForm").reset();
     this.setState({
-       showValidationMessage: false
+       showValidationMessage: false,
+       schemaValueValid: { valid: true, message: "" },
+       jsonValueValid: { valid: true, message: "" }
    });
   }
 
   render() {
     return (
       <div className="container">
+      
+      { this.state.showValidationMessage &&
+        <div className={"notification " + (this.state.isValid ? "is-primary" : "is-danger" ) }>
+          <button className="delete"></button>
+          { this.state.validationMessage }
+        </div>
+      }
         <form id="validationForm">
         <div className="columns">
           <div className="column">
             <div className="field">
               <label className="label">
-                Avro Schema:
+                Avro Schema: 
+                
+                { !this.state.schemaValueValid.valid &&
+                 <span class="tag is-danger is-pulled-right">Invalid JSON: {this.state.schemaValueValid.message} </span>
+                }
+                
               </label>
               <div className="control">
               <textarea
@@ -80,6 +116,10 @@ class App extends Component {
               <div className="field">
                 <label className="label">
                   JSON To Validate:
+                  
+                  { !this.state.jsonValueValid.valid &&
+                   <span class="tag is-danger is-pulled-right">Invalid JSON: {this.state.jsonValueValid.message}</span>
+                  }
                 </label>
                 <div className="control">
                 <textarea
@@ -92,15 +132,14 @@ class App extends Component {
               </div>
             </div>
           </div>
-          { this.state.showValidationMessage &&
-            <h3>{ this.state.validationMessage }</h3>
-          }
 
           <div className="is-pulled-right">
             <input className="button is-white" type="button" value="Clear" onClick={this.clear.bind(this)}/>
             <input className="button is-primary" type="button" value="Validate" onClick={this.validate.bind(this)}/>
           </div>
+        
         </form>
+
       </div>
     );
   }
