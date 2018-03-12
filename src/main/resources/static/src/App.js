@@ -50,7 +50,7 @@ class App extends Component {
       json: this.state.jsonValue
     });
   
-    fetch('http://localhost:8080/validate', {
+    fetch('/validate', {
       method: 'POST',
       mode: 'same-origin',
       headers: {
@@ -140,8 +140,15 @@ class App extends Component {
           </div>
 
           <div className="is-pulled-right">
-            <input className="button is-white" type="button" value="Clear" onClick={this.clear.bind(this)}/>
-            <input className="button is-primary" type="button" value="Validate" onClick={this.validate.bind(this)}/>
+            <input className="button is-white" 
+              type="button" 
+              value="Clear" 
+              onClick={this.clear.bind(this)}/>
+            <input className="button is-primary" 
+              type="button" 
+              value="Validate" 
+              disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
+              onClick={this.validate.bind(this)}/>
           </div>
         
         </form>
