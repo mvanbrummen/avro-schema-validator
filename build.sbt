@@ -8,6 +8,7 @@ lazy val root = (project in file(".")).
       scalaVersion    := "2.12.4"
     )),
     name := "Avro Schema Validator",
+    assemblyJarName in assembly := "avro-schema-validator.jar",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
