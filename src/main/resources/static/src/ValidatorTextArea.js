@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ValidatorTextArea = (props) => {
 
@@ -27,5 +28,13 @@ const ValidatorTextArea = (props) => {
         </div>
     )
 };
+
+ValidatorTextArea.propTypes = {
+    label: PropTypes.string.isRequired, 
+    valid: PropTypes.bool.isRequired, 
+    validationMessage: PropTypes.string.isRequired, 
+    name: PropTypes.string.isRequired, 
+    handleChange: PropTypes.func.isRequired
+}
 
 export default ValidatorTextArea;

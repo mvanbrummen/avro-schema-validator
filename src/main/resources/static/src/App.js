@@ -90,7 +90,10 @@ class App extends Component {
       <div className="container">
 
         {this.state.showValidationMessage &&
-          <ValidationResultMessage isValid={this.state.isValid} closeResult={this.closeResult} />
+          <ValidationResultMessage isValid={this.state.isValid}
+            validationMessage={this.state.validationMessage}
+            closeResult={this.closeResult}
+          />
         }
         <form id="validationForm">
           <div className="columns">
@@ -121,11 +124,11 @@ class App extends Component {
   }
 }
 
-const ValidationResultMessage = ({ isValid, closeResult }) => {
+const ValidationResultMessage = ({ isValid, validationMessage, closeResult }) => {
   return (
     <div className={"notification " + (isValid ? "is-primary" : "is-danger")}>
       <button className="delete" onClick={closeResult}></button>
-      {this.state.validationMessage}
+      { validationMessage }
     </div>
   )
 };

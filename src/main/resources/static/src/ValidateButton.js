@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateButton = (props) => {
 
@@ -12,5 +13,10 @@ const ValidateButton = (props) => {
             onClick={validate} />
     )
 };
+
+ValidateButton.propTypes = {
+    disabled: PropTypes.bool.isRequired,
+    validate: PropTypes.func.isRequired
+}
 
 export default ValidateButton;
