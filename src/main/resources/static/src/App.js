@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ValidateButton from './ValidateButton';
+import ClearButton from './ClearButton';
 
 class App extends Component {
 
@@ -44,7 +45,7 @@ class App extends Component {
     });
   }
 
-  validate() {
+  validate = () => {
 
     let req = JSON.stringify({
       schema: this.state.schemaValue,
@@ -72,7 +73,7 @@ class App extends Component {
     })
   }
 
-  clear() {
+  clear = () => {
     document.getElementById("validationForm").reset();
     this.setState({
        showValidationMessage: false,
@@ -141,12 +142,9 @@ class App extends Component {
           </div>
 
           <div className="is-pulled-right">
-            <input className="button is-white" 
-              type="button" 
-              value="Clear" 
-              onClick={this.clear.bind(this)}/>
+              <ClearButton clear={this.clear} />
               <ValidateButton disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
-                      validate={this.validate.bind(this)}
+                      validate={this.validate}
               />
           </div>
         </form>
