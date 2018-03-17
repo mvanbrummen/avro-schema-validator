@@ -1,7 +1,6 @@
 package mvanbrummen.avroschemavalidator.actors
 
 import akka.actor.{ Actor, ActorLogging, Props }
-import tech.allegro.schema.json2avro.converter.JsonAvroConverter
 
 import scala.util.{ Failure, Success, Try }
 
@@ -16,11 +15,9 @@ object AvroSchemaValidatorActor {
   def props: Props = Props[AvroSchemaValidatorActor]
 }
 
-class AvroSchemaValidatorActor extends Actor with ActorLogging {
+class AvroSchemaValidatorActor extends Actor with ActorLogging with AvroConverterModule {
 
   import AvroSchemaValidatorActor._
-
-  val converter = new JsonAvroConverter()
 
   override def receive: Receive = {
     case ValidateSchema(request) =>

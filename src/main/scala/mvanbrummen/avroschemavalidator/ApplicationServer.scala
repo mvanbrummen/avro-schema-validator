@@ -1,13 +1,13 @@
 package mvanbrummen.avroschemavalidator
 
-import akka.actor.{ActorRef, ActorSystem}
+import akka.actor.{ ActorRef, ActorSystem }
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 import mvanbrummen.avroschemavalidator.actors.AvroSchemaValidatorActor
-import mvanbrummen.avroschemavalidator.routes.{AvroSchemaValidationRoutes, StaticRoutes}
+import mvanbrummen.avroschemavalidator.routes.{ AvroSchemaValidationRoutes, StaticRoutes }
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
