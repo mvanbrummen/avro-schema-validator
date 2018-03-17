@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ValidateButton from './ValidateButton';
 
 class App extends Component {
 
@@ -144,13 +145,10 @@ class App extends Component {
               type="button" 
               value="Clear" 
               onClick={this.clear.bind(this)}/>
-            <input className="button is-primary" 
-              type="button" 
-              value="Validate" 
-              disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
-              onClick={this.validate.bind(this)}/>
+              <ValidateButton disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
+                      validate={this.validate.bind(this)}
+              />
           </div>
-        
         </form>
 
       </div>
