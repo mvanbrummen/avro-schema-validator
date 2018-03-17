@@ -30,10 +30,10 @@ const ValidatorTextArea = (props) => {
 };
 
 ValidatorTextArea.propTypes = {
-    label: PropTypes.string.isRequired, 
-    valid: PropTypes.bool.isRequired, 
-    validationMessage: PropTypes.string.isRequired, 
-    name: PropTypes.string.isRequired, 
+    label: PropTypes.string.isRequired,
+    valid: PropTypes.bool.isRequired,
+    validationMessage: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired
 }
 

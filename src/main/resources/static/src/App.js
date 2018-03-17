@@ -23,7 +23,7 @@ class App extends Component {
   validateJSON = (val) => {
     try {
       if (val.length > 0) {
-        JSON.parse(val)
+        JSON.parse(val);
       }
       return {
         valid: true,
@@ -128,7 +128,7 @@ const ValidationResultMessage = ({ isValid, validationMessage, closeResult }) =>
   return (
     <div className={"notification " + (isValid ? "is-primary" : "is-danger")}>
       <button className="delete" onClick={closeResult}></button>
-      { validationMessage }
+      {validationMessage}
     </div>
   )
 };

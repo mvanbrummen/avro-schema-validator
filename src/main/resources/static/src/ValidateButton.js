@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ValidateButton = (props) => {
-
-    let { disabled, validate } = props;
-
+const ValidateButton = ({ disabled, validate }) => {
     return (
         <input className="button is-primary"
             type="button"
