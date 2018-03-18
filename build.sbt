@@ -26,5 +26,7 @@ lazy val root = (project in file(".")).
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
       "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
       "org.scalatest" %% "scalatest" % "3.0.1" % Test
-    )
+    ),
+    dockerRepository := Some("docker.io"),
+    dockerUsername := Some("mvanbrummen")
   )
