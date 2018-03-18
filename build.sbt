@@ -2,13 +2,13 @@ lazy val akkaHttpVersion = "10.0.11"
 lazy val akkaVersion = "2.5.11"
 
 lazy val root = (project in file(".")).
+  enablePlugins(JavaAppPackaging).
   settings(
     inThisBuild(List(
       organization := "io.avro.schema.validator",
       scalaVersion := "2.12.4"
     )),
     name := "Avro Schema Validator",
-    assemblyJarName in assembly := "avro-schema-validator.jar",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
