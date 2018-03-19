@@ -87,7 +87,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
 
         {this.state.showValidationMessage &&
           <ValidationResultMessage isValid={this.state.isValid}
