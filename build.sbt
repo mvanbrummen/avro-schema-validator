@@ -3,11 +3,9 @@ lazy val akkaVersion = "2.5.11"
 
 lazy val projectSettings = Seq(
   name := "Avro Schema Validator",
-  version := "0.1",
+  version := "0.1-SNAPSHOT",
   organization := "io.avro.schema.validator",
-  scalaVersion := "2.12.4",
-  dockerRepository := Some("docker.io"),
-  dockerUsername := Some("mvanbrummen")
+  scalaVersion := "2.12.4"
 )
 
 lazy val root = (project in file("."))
@@ -34,5 +32,7 @@ lazy val backend = project
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
       "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
       "org.scalatest" %% "scalatest" % "3.0.1" % Test
-    )
+    ),
+    dockerRepository := Some("docker.io"),
+    dockerUsername := Some("mvanbrummen")
   )
