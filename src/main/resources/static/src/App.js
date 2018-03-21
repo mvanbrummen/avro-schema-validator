@@ -88,37 +88,46 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
 
-        {this.state.showValidationMessage &&
-          <ValidationResultMessage isValid={this.state.isValid}
-            validationMessage={this.state.validationMessage}
-            closeResult={this.closeResult}
-          />
-        }
-        <form id="validationForm">
-          <div className="columns">
-            <ValidatorTextArea label="Avro Schema:"
-              valid={this.state.schemaValueValid.valid}
-              validationMessage={this.state.schemaValueValid.message}
-              name="schemaValue"
-              handleChange={this.handleChange}
-            />
-            <ValidatorTextArea label="JSON to Validate:"
-              valid={this.state.jsonValueValid.valid}
-              validationMessage={this.state.jsonValueValid.message}
-              name="jsonValue"
-              handleChange={this.handleChange}
-            />
-          </div>
+        <section>
+          <Opening />
+        </section>
 
-          <div className="is-pulled-right">
-            <ClearButton clear={this.clear} />
-            <ValidateButton disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
-              validate={this.validate}
-            />
-          </div>
-        </form>
+        <section className="section panels">
 
+          {this.state.showValidationMessage &&
+            <ValidationResultMessage isValid={this.state.isValid}
+              validationMessage={this.state.validationMessage}
+              closeResult={this.closeResult}
+            />
+          }
+          <form id="validationForm">
+            <div className="columns">
+              <ValidatorTextArea label="Avro Schema:"
+                valid={this.state.schemaValueValid.valid}
+                validationMessage={this.state.schemaValueValid.message}
+                name="schemaValue"
+                handleChange={this.handleChange}
+              />
+              <ValidatorTextArea label="JSON to Validate:"
+                valid={this.state.jsonValueValid.valid}
+                validationMessage={this.state.jsonValueValid.message}
+                name="jsonValue"
+                handleChange={this.handleChange}
+              />
+            </div>
+
+            <div className="is-pulled-right">
+              <ClearButton clear={this.clear} />
+              <ValidateButton disabled={(!this.state.schemaValueValid.valid && !this.state.jsonValueValid.valid) || !this.state.schemaValueValid.valid || !this.state.jsonValueValid.valid}
+                validate={this.validate}
+              />
+            </div>
+          </form>
+        </section>
+
+        <Footer />
       </div>
     );
   }
@@ -132,5 +141,50 @@ const ValidationResultMessage = ({ isValid, validationMessage, closeResult }) =>
     </div>
   )
 };
+
+const NavBar = () => {
+  return (
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <h1 class="title"><span class="logo">{} </span>Avro Schema Validator</h1>
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-primary" href="https://github.com/mvanbrummen/avro-schema-validator">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>View on GitHub</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+const Opening = () => {
+  return (
+    <div class="container opening">
+      <p>
+        A quick and simple tool to validate a JSON message against an <a href="https://avro.apache.org/docs/1.8.1/spec.html">Avro schema</a>.
+      </p>
+    </div>
+  )
+}
+
+const Footer = () => {
+  return (
+    <footer class="has-text-centered is-marginless is-padless">
+      <p class="is-size-7">Built with Scala, Akka HTTP, ReactJS and Bulma CSS</p>
+    </footer>
+  )
+}
 
 export default App;
