@@ -1,14 +1,22 @@
 lazy val akkaHttpVersion = "10.0.11"
 lazy val akkaVersion = "2.5.11"
 
-lazy val root = (project in file(".")).
-  enablePlugins(JavaAppPackaging).
-  settings(
-    inThisBuild(List(
-      organization := "io.avro.schema.validator",
-      scalaVersion := "2.12.4"
-    )),
-    name := "Avro Schema Validator",
+lazy val projectSettings = Seq(
+  name := "Avro Schema Validator",
+  version := "0.1",
+  organization := "io.avro.schema.validator",
+  scalaVersion := "2.12.4",
+  dockerRepository := Some("docker.io"),
+  dockerUsername := Some("mvanbrummen")
+)
+
+lazy val root = (project in file("."))
+  .aggregate(backend)
+
+lazy val backend = project
+  .enablePlugins(JavaAppPackaging)
+  .settings(projectSettings: _*)
+  .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
@@ -26,7 +34,5 @@ lazy val root = (project in file(".")).
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
       "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
       "org.scalatest" %% "scalatest" % "3.0.1" % Test
-    ),
-    dockerRepository := Some("docker.io"),
-    dockerUsername := Some("mvanbrummen")
+    )
   )

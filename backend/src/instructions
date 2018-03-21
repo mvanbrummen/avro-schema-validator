@@ -1,0 +1,20 @@
+// build react
+yarn build
+
+// build and publish docker image
+sbt clean compile
+sbt docker:publishLocal
+sbt docker:publish
+
+// remove running container from hyper
+hyper ps
+hyper rm <container_id>
+
+// update image
+hyper pull mvanbrummen/avro-schema-validator:0.1-SNAPSHOT
+
+// run new image
+hyper run -d -p 80:8080 --name avro-schema-validator mvanbrummen/avro-schema-validator:0.1-SNAPSHOT
+
+// attach floating ip to container
+hyper fip attach 209.177.88.17 avro-schema-validator
