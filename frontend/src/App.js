@@ -147,7 +147,7 @@ const NavBar = () => {
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="#">
-          <h1 class="title"><span class="logo">{} </span>Avro Schema Validator</h1>
+          <h1 class="title"><span class="logo">{'{'}{'}'} </span>Avro Schema Validator</h1>
         </a>
       </div>
 
