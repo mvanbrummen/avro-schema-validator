@@ -8,9 +8,9 @@ trait StaticRoutes {
   lazy val staticResourcesRoutes: Route =
     get {
       (pathEndOrSingleSlash & redirectToTrailingSlashIfMissing(StatusCodes.TemporaryRedirect)) {
-        getFromResource("static/build/index.html")
+        getFromResource("build/index.html")
       } ~ {
-        getFromResourceDirectory("static/build")
+        getFromResourceDirectory("build")
       }
     }
 }
