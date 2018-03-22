@@ -4,7 +4,6 @@ lazy val akkaVersion = "2.5.11"
 lazy val projectSettings = Seq(
   name := "Avro Schema Validator",
   version := "0.1-SNAPSHOT",
-  organization := "io.avro.schema.validator",
   scalaVersion := "2.12.4"
 )
 
