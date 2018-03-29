@@ -4,6 +4,7 @@ import ValidateButton from './ValidateButton';
 import ClearButton from './ClearButton';
 import ValidatorTextArea from './ValidatorTextArea';
 import 'bulma/css/bulma.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
 
@@ -158,7 +159,7 @@ const NavBar = () => {
             <p class="control">
               <a class="button is-primary" href="https://github.com/mvanbrummen/avro-schema-validator">
                 <span class="icon">
-                  <i class="fab fa-github"></i>
+                  <i class="fa fa-github"></i>
                 </span>
                 <span>View on GitHub</span>
               </a>
