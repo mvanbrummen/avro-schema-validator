@@ -3,6 +3,7 @@ import './App.css';
 import ValidateButton from './ValidateButton';
 import ClearButton from './ClearButton';
 import ValidatorTextArea from './ValidatorTextArea';
+import 'bulma/css/bulma.css';
 
 class App extends Component {
 
