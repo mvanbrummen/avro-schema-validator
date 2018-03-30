@@ -9,14 +9,15 @@ import akka.http.scaladsl.server.directives.MethodDirectives.post
 import akka.http.scaladsl.server.directives.PathDirectives.path
 import akka.pattern.ask
 import akka.util.Timeout
-import mvanbrummen.avroschemavalidator.actors.AvroSchemaValidatorActor.{ ValidateSchema, ValidationResult }
 import mvanbrummen.avroschemavalidator.actors.AvroSchemaRequest
-import mvanbrummen.avroschemavalidator.json.JsonSupport
+import mvanbrummen.avroschemavalidator.actors.AvroSchemaValidatorActor.{ ValidateSchema, ValidationResult }
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
+import io.circe.generic.auto._
 
-trait AvroSchemaValidationRoutes extends JsonSupport {
+trait AvroSchemaValidationRoutes {
 
   implicit def system: ActorSystem
 

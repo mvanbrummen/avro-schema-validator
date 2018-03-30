@@ -1,6 +1,8 @@
 lazy val akkaHttpVersion = "10.0.11"
 lazy val akkaVersion = "2.5.11"
 
+resolvers += Resolver.bintrayRepo("hseeberger", "maven")
+
 lazy val projectSettings = Seq(
   name := "Avro Schema Validator",
   version := "0.1-SNAPSHOT",
@@ -16,11 +18,14 @@ lazy val backend = project
   .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-      "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-xml" % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
       "com.typesafe" % "config" % "1.3.1",
       "tech.allegro.schema.json2avro" % "converter" % "0.2.5",
+      "de.heikoseeberger" %% "akka-http-circe" % "1.20.0",
+      "io.circe" %% "circe-core" % "0.9.1",
+      "io.circe" %% "circe-generic" % "0.9.1",
+      "io.circe" %% "circe-parser" % "0.9.1",
 
       "com.softwaremill.macwire" %% "macros" % "2.3.0" % "provided",
       "com.softwaremill.macwire" %% "macrosakka" % "2.3.0" % "provided",
